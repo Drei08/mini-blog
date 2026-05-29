@@ -1,0 +1,28 @@
+.about {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about h2 {
+  color: #aaa;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  color: #807f7f;
+  margin-bottom: 0.5rem;
+}
+
+.about span {
+  color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.about a {
+  margin-top: 1rem;
+  display: block;
+}
