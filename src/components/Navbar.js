@@ -10,7 +10,11 @@ import styles from './Navbar.module.css';
 
 const Navbar = () => {
 
-  const { user } = useAuthValue();
+  const { logout } = useAuthentication();
+  const context = useAuthValue();
+  const user = context ? context.user : null
+
+
 
   return ( <nav className={styles.navbar}>  
     <NavLink to="/" className={styles.brand}>
@@ -55,6 +59,11 @@ const Navbar = () => {
           Sobre
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <button onClick={logout}>Sair</button>
+        </li>
+      )}
     </ul>
   </nav>
   )

@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider value={user}>
+      <AuthProvider value={{user}}>
         <BrowserRouter>
           <Navbar />
           <div className="container">
