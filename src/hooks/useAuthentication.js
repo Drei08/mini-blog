@@ -1,4 +1,4 @@
-import { db } from "../firebase/config";
+import { app, db } from "../firebase/config";
 
 import { 
   getAuth,
@@ -17,7 +17,7 @@ export const useAuthentication = () => {
   // Cleanup para evitar memory leaks
   const [cancelled, setCancelled] = useState(false);
 
-  const auth = getAuth();
+  const auth = getAuth(app);
   
   function checkIfIsCancelled() {
     if (cancelled) {
@@ -55,6 +55,7 @@ export const useAuthentication = () => {
       console.log(typeof error.message);
 
       let systemErrorMessage
+
       if (error.message.includes("Password")) {
         systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
       } else if (error.message.includes("email-already")) {
@@ -69,12 +70,35 @@ export const useAuthentication = () => {
     }
   };
 
-  //Logout  -sing out
+  // Logout - sing out
   const logout = () => {
     //limpando memoria Link
     checkIfIsCancelled();
     signOut(auth);
   }
+
+  // Login - sing in
+  const login = async(data) => {
+    //limpa memori Link
+    checkIfIsCancelled();
+    setLoading(true)
+    setError(false)
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      setLoading(false);
+    } catch (error) {
+      let systemErrorMessage
+      if (error.code === "auth/invalid-credential") {
+        systemErrorMessage = "E-mail ou senha incorreta."
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde."
+      }
+
+      setError(systemErrorMessage);
+      setLoading(false);
+    }
+  };
 
   // Evitar memory leaks
   useEffect(() => {
@@ -87,5 +111,6 @@ export const useAuthentication = () => {
     error,
     loading,
     logout,
+    login
   };
 };
