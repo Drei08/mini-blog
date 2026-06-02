@@ -18,27 +18,44 @@
 
     const {insertDocument, response} = useInsertDocument("posts");
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
       e.preventDefault();
       setFormError("");
       
       //validate image url
-
+      try{
+        new URL(image);
+      }catch(error){
+        setFormError("A imagem precisa ser uma URL.");
+        return;
+      }
       //criar array de tags
-
+      //padronizar as tags para conseguir buscar melhor na pesquisa
+      const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
       //checar todos os valores
+
+      if(!title || !image || !body || !tags){
+        setFormError("Por favor, preencha todos os campos!");
+        return;
+      }
+
+      if(formError){
+        return;
+      }
 
       insertDocument({ 
         title, 
         image, 
         body, 
-        tags,
+        tagsArray,
         uid: user.uid,
         createdBy: user.displayName,
       });
 
       //redirect to home page
-
+      navigate('/');
     };
 
     return (
@@ -86,6 +103,7 @@
           {response.loading && <button className="btn" disabled>Cadastrando...</button>}
           {/* Exibe mensagem de erro, se houver */}
           {response.error && <p className="error">{response.error}</p>}
+          {formError && <p className="error">{formError}</p>}
         </form>
       </div>
     )

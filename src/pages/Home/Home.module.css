@@ -1,0 +1,35 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_form {
+  max-width: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+
+.search_form input {
+  margin-right: 15px;
+  width: 75%;
+}
+
+.noposts {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.noposts p {
+  margin-bottom: 1.5em;
+}
+
+.noposts a {
+  padding: 10px 25px;
+  
+}

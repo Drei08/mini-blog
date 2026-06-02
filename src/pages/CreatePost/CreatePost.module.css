@@ -1,5 +1,7 @@
 .create_post {
-  text-align: center; 
+  text-align: center;
+  padding-bottom: 10px; 
+  
 }
 
 .create_post h2 {
@@ -8,5 +10,6 @@
 
 .create_post p {
   color: #807f7f;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
+
