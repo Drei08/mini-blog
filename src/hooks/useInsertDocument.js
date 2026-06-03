@@ -67,5 +67,4 @@ export const useInsertDocument = (docCollection) => {
     }, []);
 
     return { insertDocument, response };
-
 }
