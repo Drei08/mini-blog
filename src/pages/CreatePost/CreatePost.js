@@ -16,7 +16,7 @@
 
     const { user } = useAuthValue();
 
-    const {insertDocument, response} = useInsertDocument("posts");
+    const {insertDocument, response} = useInsertDocument("po");
 
     const navigate = useNavigate();
 
