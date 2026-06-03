@@ -27,17 +27,17 @@ import {
       const collectionRef = await collection(db, docCollection);
 
       try{
+
         let q;
 
-        //busca
+        if(search){
+          q = await query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
 
-        //dashboard
-
-
-        q = await query(collectionRef, orderBy("createdAt", "desc"));
+        }else{
+          q = await query(collectionRef, orderBy("createdAt", "desc"));
+        }
 
         await onSnapshot(q, (querySnapshot) => {
-
           setDocuments(
             querySnapshot.docs.map((doc) => ({
               id: doc.id,
