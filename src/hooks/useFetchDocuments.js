@@ -31,10 +31,16 @@ import {
         let q;
 
         if(search){
-          q = await query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
-
+          q = await query(
+            collectionRef, 
+            where("tagsArray", "array-contains", search), 
+            orderBy("createdAt", "desc")
+          );
         }else{
-          q = await query(collectionRef, orderBy("createdAt", "desc"));
+          q = await query(
+            collectionRef, 
+            orderBy("createdAt", "desc")
+          );
         }
 
         await onSnapshot(q, (querySnapshot) => {
