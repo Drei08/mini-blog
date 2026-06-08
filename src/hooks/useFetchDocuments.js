@@ -63,8 +63,7 @@ import {
     }
 
     loadData();
-
-  },[docCollection, search, uid, cancelled]);
+  },[docCollection, documents, search, uid, cancelled]);
 
   //cleanup limpesa de memoria
   useEffect(() => {
