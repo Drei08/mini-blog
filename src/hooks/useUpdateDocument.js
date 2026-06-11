@@ -44,11 +44,11 @@ export const useUpdateDocument = (docCollection) => {
 
           const docRef = await doc(db, docCollection, id);
 
-          const updateDocument = await updateDoc(docRef, data);
+          const updatedDocument = await updateDoc(docRef, data);
 
         checkCancelBeforeDispatch({
           type: 'UPDATED_DOC',
-          payload: updateDocument,
+          payload: updatedDocument,
         });
 
       }catch (error) {
